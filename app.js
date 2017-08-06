@@ -16,18 +16,18 @@ function displayCharacters(){
 
     for(i = 0; i < response.data.length; i++){
     var image = response.data[i].images.downsized.url;
-    var newImage = $("<img width='175px' height='150px'>").attr("src", image);
+    var newImage = $("<img width='250px' height='225px' class='position'>").attr("src", image);
     characterDiv.append(newImage);
 
     var rating = response.data[i].rating;
-    var newRating = $("<p>").text("Rating:" + " " + rating);
+    var newRating = $("<p class='rating'>").text("Rating:" + " " + rating);
     characterDiv.append(newRating);
   }
     $("#characters").html(characterDiv);
+
     console.log(response);
 
   });
-
 
 }
 
@@ -57,7 +57,7 @@ $("#addCharacter").on("click", function(event){
 
   renderButtons();
 
-
+  $('#office-form').trigger("reset");
 });
 
 $(document).on("click", ".office", displayCharacters);

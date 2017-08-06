@@ -2,6 +2,14 @@ body{
   background: url("http://www.hdwallpaper.nu/wp-content/uploads/2016/09/The-Office_wallpaper_015465.jpg");
 }
 #office-form{
-  position: fixed;
-  right: 5%;
+  text-align: right;
+}
+.rating{
+  color: white;
+}
+
+.position{
+  border-style: solid;
+  border-width: 10px;
+  border-color: orange;
 }
