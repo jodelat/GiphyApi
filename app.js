@@ -15,13 +15,14 @@ function displayCharacters(){
     var characterDiv = $("<div class='character-data'>");
 
     for(i = 0; i < response.data.length; i++){
-    var image = response.data[i].images.downsized.url;
-    var newImage = $("<img width='250px' height='225px' class='position'>").attr("src", image);
-    characterDiv.append(newImage);
-
     var rating = response.data[i].rating;
     var newRating = $("<p class='rating'>").text("Rating:" + " " + rating);
     characterDiv.append(newRating);
+
+    var image = response.data[i].images.downsized.url;
+    var stillImage= response.data[i].images.downsized_still.url;
+    var newImage = $("<img width='250px' height='225px' class='gifs' data-state='still'>").attr("src", stillImage).attr("data-still", stillImage).attr("data-animate", image);
+    characterDiv.append(newImage);
   }
     $("#characters").html(characterDiv);
 
@@ -36,7 +37,7 @@ function renderButtons(){
 
 for (var i = 0; i < characters.length; i++) {
 
-  var a = $("<button>");
+  var a = $("<button type='button' class='btn btn-default'>");
 
   a.addClass("office");
 
@@ -59,6 +60,24 @@ $("#addCharacter").on("click", function(event){
 
   $('#office-form').trigger("reset");
 });
+
+$(document).on("click", ".gifs", function(){
+
+  var state = $(this).attr("data-state");
+  var animated = $(this).attr("data-animate");
+  var still = $(this).attr("data-still");
+
+  if(state === "still"){
+    $(this).attr("src", animated);
+    $(this).attr("data-state", "animated");
+  }
+  else if(state !== "still"){
+    $(this).attr("src", still);
+    $(this).attr("data-state", "still");
+  }
+
+});
+
 
 $(document).on("click", ".office", displayCharacters);
 
